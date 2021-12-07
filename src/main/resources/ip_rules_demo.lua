@@ -1,15 +1,22 @@
 -- ip集合
-local remoteIps = {"-", "", "111.11.1, 222.2.2.2, abc.ddd", "127.0.01"}
+remoteIps = {"-", "", "111.11.1, 222.2.2.2, abc.ddd", "127.0.01"}
 
 -- 获取ip
-function getRemoteIp(remoteIps)
-    for i, v in ipairs(remoteIps) do
-
+function getRemoteIp()
+    for i = 1, #remoteIps do
+        v = remoteIps[i];
         if (v ~= nil and v ~= "-" and v ~= "")then
-            --return string.split(v, ',')[1];
-            return Split(v, ',')[1];
+            return string.split(v, ',')[1];
+            --return Split(v, ',')[1];
         end
     end
+    --for i, v in ipairs(remoteIps) do
+    --
+    --    if (v ~= nil and v ~= "-" and v ~= "")then
+    --        --return string.split(v, ',')[1];
+    --        return Split(v, ',')[1];
+    --    end
+    --end
 end
 --字符串切割
 function string.split(input, delimiter)
@@ -42,5 +49,5 @@ function Split(szFullString, szSeparator)
     return nSplitArray
 end
 
-print(getRemoteIp(remoteIps))
+print(getRemoteIp())
 
