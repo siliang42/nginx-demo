@@ -6,7 +6,8 @@ function getRemoteIp(remoteIps)
     for i, v in ipairs(remoteIps) do
 
         if (v ~= nil and v ~= "-" and v ~= "")then
-            return string.split(v, ',')[1];
+            --return string.split(v, ',')[1];
+            return Split(v, ',')[1];
         end
     end
 end
@@ -22,6 +23,23 @@ function string.split(input, delimiter)
     end
     table.insert(arr, string.sub(input, pos))
     return arr
+end
+
+function Split(szFullString, szSeparator)
+    local nFindStartIndex = 1
+    local nSplitIndex = 1
+    local nSplitArray = {}
+    while true do
+        local nFindLastIndex = string.find(szFullString, szSeparator, nFindStartIndex)
+        if not nFindLastIndex then
+            nSplitArray[nSplitIndex] = string.sub(szFullString, nFindStartIndex, string.len(szFullString))
+            break
+        end
+        nSplitArray[nSplitIndex] = string.sub(szFullString, nFindStartIndex, nFindLastIndex - 1)
+        nFindStartIndex = nFindLastIndex + string.len(szSeparator)
+        nSplitIndex = nSplitIndex + 1
+    end
+    return nSplitArray
 end
 
 print(getRemoteIp(remoteIps))
